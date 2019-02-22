@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/user}" method="post" th:object="${user}">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="id" th:value="${user.id}">
+    username:<input type="text" name="username" th:value="${user.username}"><br>
+    password:<input type="password" name="password" th:value="${user.password}"><br>
+    fullname:<input type="text" name="fullname" th:value="${user.fullname}"> <br>
+    sex:<input type="radio" name="sex" th:checked="${user.sex==1?'checked':''}" value="1">男<input type="radio" name="sex" th:checked="${user.sex==0?'checked':''}" value="0">女<br>
+    department:<input type="text" name="department" th:value="${user.department}"><br>
+    <input type="submit" value="确认修改">
+</form>
+</body>
+</html>

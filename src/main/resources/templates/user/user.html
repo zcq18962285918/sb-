@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆成功</title>
+</head>
+<body>
+<h1>欢迎您! <span th:text="${session.user}"></span></h1>
+<a th:href="@{/user}">添加用户</a>
+<table border="1" bgcolor="#f0ffff" height="50%" align="center">
+    <tr>
+        <td>id</td>
+        <td>用户名</td>
+        <td>全名</td>
+        <td>性别</td>
+        <td>部门</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="user:${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.fullname}"></td>
+        <td th:text="${user.sex}==0?'女':'男'"></td>
+        <td th:text="${user.department}"></td>
+        <td>
+            <a th:href="@{/user/}+${user.id}">修改</a>
+            <button th:attr="del_uri=@{/user/}+${user.id}" class="delBtn">删除</button>
+        </td>
+    </tr>
+</table>
+<!--当需要发送restful风格的删除请求时，写一个form模板，然后使用js对模板进行操作，删除信息-->
+<form id="delForm" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+   $(".delBtn").click(function () {
+       $("#delForm").attr("action",$(this).attr("del_uri")) .submit();
+       return false;
+   });
+
+</script>
+</body>
+
+</html>
