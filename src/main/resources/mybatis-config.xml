@@ -28,4 +28,8 @@
         <!-- 打印SQL语句到控制台 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
+	
+	<typeAliases>
+        <package name="com.example.entity"/>
+    </typeAliases>
 </configuration>

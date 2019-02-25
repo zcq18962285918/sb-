@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String toAddPage() {
+    public String doAddPage() {
         return "user/add";
     }
 
@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public String toEditPage(@PathVariable("id") Integer id, Model model) {
+    public String doEditPage(@PathVariable("id") Integer id, Model model) {
         User user = userMapper.selectById(id);
         model.addAttribute("user", user);
         return "user/edit";
